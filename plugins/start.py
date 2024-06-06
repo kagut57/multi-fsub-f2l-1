@@ -3,11 +3,11 @@ import os
 import asyncio
 from pyrogram import Client, filters, __version__
 from pyrogram.enums import ParseMode
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ChatJoinRequest
 from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
 
-from bot import Bot
-from config import ADMINS, FORCE_MSG, START_MSG, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT, DELAY
+from bot import Bot, UserBot as Ubot
+from config import ADMINS, FORCE_MSG, START_MSG, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT, DELAY, REQ_CHAT
 from helper_func import subscribed, encode, decode, get_messages
 from database.database import add_user, del_user, full_userbase, present_user, fsub
 
@@ -302,3 +302,10 @@ async def show_fsub(client, message):
             await message.reply("No subscribed channels found.")
     else:
         await message.reply("No subscribed channel IDs found.")
+
+@Ubot.on_chat_join_request(filters.chat(REQ_CHAT))
+async def join_reqs(client: Client, join_req: ChatJoinRequest):
+    try:
+        await client.approve_chat_join_request(chat_id=join_req.chat.id, user_id=join_req.from_user.id)
+    except Exception as e:
+        print(f"Failed to approve join request: {e}")
