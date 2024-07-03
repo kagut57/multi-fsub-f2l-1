@@ -6,48 +6,48 @@ from logging.handlers import RotatingFileHandler
 
 
 #Bot token @Botfather
-TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "")
+TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "6305718828:AAG1m544vJ3Z-hTva51kBDynV3OukoSxNZU")
 
 #Your API ID from my.telegram.org
-APP_ID = int(os.environ.get("APP_ID", ""))
+APP_ID = int(os.environ.get("APP_ID", "27570599"))
 
 #Your API Hash from my.telegram.org
-API_HASH = os.environ.get("API_HASH", "")
+API_HASH = os.environ.get("API_HASH", "0329a786739cb73a2b1176582c5e8376")
 
 #Uer String
 USER_SESSION = os.environ.get("USER_SESSION", "")
 
 #Your API ID from my.telegram.org
-USER_APP_ID = int(os.environ.get("USER_APP_ID", ""))
+USER_APP_ID = int(os.environ.get("USER_APP_ID", "27570599"))
 
 #Your API Hash from my.telegram.org
-USER_API_HASH = os.environ.get("USER_API_HASH", "")
+USER_API_HASH = os.environ.get("USER_API_HASH", "0329a786739cb73a2b1176582c5e8376")
 
 #Your db channel Id
-CHANNEL_ID = int(os.environ.get("CHANNEL_ID", ""))
+CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1002042807021"))
 
 #OWNER ID
-OWNER_ID = int(os.environ.get("OWNER_ID", ""))
+OWNER_ID = int(os.environ.get("OWNER_ID", "5468078784"))
 
 #Port
 PORT = os.environ.get("PORT", "8080")
 
 #Database 
-DB_URI = os.environ.get("DATABASE_URL", "")
+DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://lodukuwaraboy:Qwerty12@cluster0.mfey0ob.mongodb.net/?retryWrites=true&w=majority")
 DB_NAME = os.environ.get("DATABASE_NAME", "filesharexbot")
 
 """
 delay for message to delete after bot send files to user. 
 default delay is 60 secs you can change it by changing the minutes i mean if u want delay of 2 mins than change 1 to 2 ans so on.
 """
-DELAY = int(1 * 60)
+DELAY = int(30 * 60)
 
 TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
 
 #start message
 START_MSG = os.environ.get("START_MESSAGE", "Hello {first}\n\nI can store private files in Specified Channel and other users can access it from special link.")
 try:
-    ADMINS=[]
+    ADMINS=[5468078784, 6083121288]
     for x in (os.environ.get("ADMINS", "").split()):
         ADMINS.append(int(x))
 except ValueError:
