@@ -303,9 +303,9 @@ async def show_fsub(client, message):
     else:
         await message.reply("No subscribed channel IDs found.")
 
-@Ubot.on_chat_join_request(filters.chat(REQ_CHAT))
-async def join_reqs(client: Client, join_req: ChatJoinRequest):
-    try:
-        await client.approve_chat_join_request(chat_id=join_req.chat.id, user_id=join_req.from_user.id)
-    except Exception as e:
-        print(f"Failed to approve join request: {e}")
+#@Ubot.on_chat_join_request(filters.chat(REQ_CHAT))
+#async def join_reqs(client: Client, join_req: ChatJoinRequest):
+  #  try:
+   #     await client.approve_chat_join_request(chat_id=join_req.chat.id, user_id=join_req.from_user.id)
+   # except Exception as e:
+    #    print(f"Failed to approve join request: {e}")
