@@ -4,9 +4,9 @@ RUN apt update -y && apt upgrade -y && \
     apt install -y --no-install-recommends git && \
     rm -rf /var/lib/apt/lists/* 
     
-RUN git clone <repo.link with token if private> app
+RUN git clone https://github.com/SHINXxd/multi-fsub-f2l app
 
-WORKDIR /app
+WORKDIR app
 
 RUN pip3 install -r requirements.txt
 
