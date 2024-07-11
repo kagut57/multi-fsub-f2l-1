@@ -155,18 +155,19 @@ async def not_joined(client: Client, message: Message):
         try:
             invite_link = await client.create_chat_invite_link(chat_id=force_sub_channel)
             buttons.append(
-                [
-                    InlineKeyboardButton(
-                        f"Join Channel {idx}",
-                        url=invite_link.invite_link
-                    )
-                ]
+                InlineKeyboardButton(
+                    f"Join Channel {idx}",
+                    url=invite_link.invite_link
+                )
             )
         except Exception as e:
             print(f"Error creating invite link for channel {force_sub_channel}: {e}")
 
+    # Group buttons into rows of two
+    button_rows = [buttons[i:i + 2] for i in range(0, len(buttons), 2)]
+
     try:
-        buttons.append(
+        button_rows.append(
             [
                 InlineKeyboardButton(
                     text='Try Again',
@@ -185,7 +186,7 @@ async def not_joined(client: Client, message: Message):
             mention=message.from_user.mention,
             id=message.from_user.id
         ),
-        reply_markup=InlineKeyboardMarkup(buttons),
+        reply_markup=InlineKeyboardMarkup(button_rows),
         quote=True,
         disable_web_page_preview=True
     )
